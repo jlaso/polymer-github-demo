@@ -23,12 +23,14 @@
 
       <template repeat="{{user in users}}">
 
+        <a href="author.html?name={{user.login}}" title="{{user.html_url}}" target="_blank">
         <author-card>
 
           <img src="{{user.avatar_url}}" width="70" height="70">
           <h2>({{user.id}}) {{user.login}}</h2>
 
         </author-card>
+        </a>
 
       </template>
 

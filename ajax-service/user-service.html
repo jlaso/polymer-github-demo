@@ -1,0 +1,54 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-ajax/core-ajax.html">
+
+<polymer-element name="user-service" attributes="user repos username">
+
+  <template>
+
+    <style>
+    :host {
+      display: none;
+    }
+    </style>
+
+    <core-ajax id="ajax1"
+      auto
+      url="https://api.github.com/users/{{username}}"
+      on-core-response="{{userLoaded}}"
+      handleAs="json">
+    </core-ajax>
+
+    <!--
+    <core-ajax id="ajax2" auto
+      url="https://api.github.com/users/{{username}}/repos"
+      on-core-response="{{reposLoaded}}"
+      handleAs="json">
+    </core-ajax>
+    -->
+
+  </template>
+
+  <script>
+    Polymer('user-service', {
+
+      created: function() {
+        this.user = [];
+        this.repos = [];
+      },
+
+      userLoaded: function() {
+        //console.log(this.$.response);
+        //console.log(this.$.ajax1.response);
+        this.user = this.$.ajax1.response;
+      }
+      /* ,
+      reposLoaded: function() {
+        console.log(this.$.ajax2.response.slice(0));
+        this.repos = this.$.ajax2.response.slice(0);
+      } */
+
+    });
+  </script>
+
+
+</polymer-element>
