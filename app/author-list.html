@@ -1,0 +1,46 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../ajax-service/users-service.html">
+<link rel="import" href="author-card.html">
+
+<polymer-element name="author-list">
+
+  <template>
+
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    author-card {
+      margin-bottom: 30px;
+    }
+    </style>
+
+    <users-service id="authors-service" users="{{users}}">
+    </users-service>
+
+    <div layout vertical center>
+
+      <template repeat="{{user in users}}">
+
+        <author-card>
+
+          <img src="{{user.avatar_url}}" width="70" height="70">
+          <h2>({{user.id}}) {{user.login}}</h2>
+
+        </author-card>
+
+      </template>
+
+    </div>
+
+
+  </template>
+
+  <script>
+  Polymer({
+    //
+  });
+  </script>
+
+</polymer-element>
